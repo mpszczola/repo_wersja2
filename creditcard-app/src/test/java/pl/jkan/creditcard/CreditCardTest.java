@@ -29,5 +29,14 @@ public class CreditCardTest {
         Assert.assertTrue(card.isBlocked());
     }
     
+<<<<<<< HEAD
     
+=======
+    @Test(expected = WithdrawWhenOverTheLimit.class)
+    public void cantWithdrawWhenWhenOverTheLimit() throws Exception{
+        CreditCard card = new CreditCard();
+        card.assignLimit(200);
+        card.withdraw(300);
+    }
+>>>>>>> feature_withdraw
 }
