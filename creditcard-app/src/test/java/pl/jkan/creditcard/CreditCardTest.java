@@ -18,4 +18,11 @@ public class CreditCardTest {
     public void cantWithdrawWhenCantAfford() {
 
     }
+    
+    @Test(expected = WithdrawWhenOverTheLimit.class)
+    public void cantWithdrawWhenWhenOverTheLimit() throws Exception{
+        CreditCard card = new CreditCard();
+        card.assignLimit(200);
+        card.withdraw(300);
+    }
 }
