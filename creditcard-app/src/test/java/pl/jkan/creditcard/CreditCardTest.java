@@ -51,4 +51,23 @@ public class CreditCardTest {
         card.assignLimit(200);
         card.withdraw(300);
     }
+
+    @Test(expected = LimitAlreadyAssignedException.class)
+    public void limitCantBeAssignTwice() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(200);
+        card.assignLimit(300);
+    }
+
+    @Test(expected = InsufficientCreditLimitException.class)
+    public void limitMustBeGreaterThan0() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(0);
+    }
+
+    @Test(expected = InsufficientCreditLimitException.class)
+    public void limitMustBePositive() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(-100);
+    }
 }

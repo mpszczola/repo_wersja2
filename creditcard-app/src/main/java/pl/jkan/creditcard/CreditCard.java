@@ -7,6 +7,14 @@ class CreditCard {
     private double balance;
     
     public void assignLimit(double money) {
+        if (limit != 0.0) {
+            throw new LimitAlreadyAssignedException();
+        }
+
+        if (money <= 0) {
+            throw new InsufficientCreditLimitException();
+        }
+
         this.limit = money;
         this.balance = money;
     }
