@@ -5,22 +5,30 @@ import java.math.BigDecimal;
 class CreditCard {
     
     private boolean blocked = false;
-    private BigDecimal limit = BigDecimal.ZERO;
+    private BigDecimal limit;
     private BigDecimal balance = BigDecimal.ZERO;
     
     public void assignLimit(BigDecimal money) {
-        if (!limit.equals(BigDecimal.ZERO)) {
+        if (isLimitAlreadyAsigned()) {
             throw new LimitAlreadyAssignedException();
         }
 
-        if (money.compareTo(BigDecimal.ZERO) <= 0) {
+        if (isLimitBelowOrEquals0(money)) {
             throw new InsufficientCreditLimitException();
         }
 
         this.limit = money;
         this.balance = money;
     }
-    
+
+    private boolean isLimitBelowOrEquals0(BigDecimal money) {
+        return money.compareTo(BigDecimal.ZERO) <= 0;
+    }
+
+    private boolean isLimitAlreadyAsigned() {
+        return limit != null;
+    }
+
     public BigDecimal getLimit() {
         return limit;
     }
