@@ -48,6 +48,9 @@ class CreditCard {
     }
 
     public void repay(double money) {
+        if (money < 0) {
+            throw new CantRepayNegativeAmountException();
+        }
         balance = balance + money;
     }
 

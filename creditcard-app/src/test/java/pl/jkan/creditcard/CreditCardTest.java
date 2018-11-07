@@ -93,6 +93,7 @@ public class CreditCardTest {
         Assert.assertTrue(700 == card.getBalance());
     }
 
+    @Test
     public void itIsNotPossibleToRepayNegativeAmount() {
         CreditCard card = new CreditCard();
         card.assignLimit(1000);
