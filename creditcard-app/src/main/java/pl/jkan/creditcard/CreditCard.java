@@ -1,17 +1,19 @@
 package pl.jkan.creditcard;
 
+import java.math.BigDecimal;
+
 class CreditCard {
     
     private boolean blocked = false;
-    private double limit;
-    private double balance;
+    private BigDecimal limit = BigDecimal.ZERO;
+    private BigDecimal balance = BigDecimal.ZERO;
     
-    public void assignLimit(double money) {
-        if (limit != 0.0) {
+    public void assignLimit(BigDecimal money) {
+        if (!limit.equals(BigDecimal.ZERO)) {
             throw new LimitAlreadyAssignedException();
         }
 
-        if (money <= 0) {
+        if (money.compareTo(BigDecimal.ZERO) <= 0) {
             throw new InsufficientCreditLimitException();
         }
 
@@ -19,7 +21,7 @@ class CreditCard {
         this.balance = money;
     }
     
-    public double getLimit() {
+    public BigDecimal getLimit() {
         return limit;
     }
     
@@ -31,7 +33,7 @@ class CreditCard {
         return this.blocked;
     }
 
-    public void withdraw(double money) {
+    public void withdraw(BigDecimal money) {
         if (isWithdrawOverTheLimit(money))
             throw new NotEnoughMoneyException();
 
@@ -41,25 +43,25 @@ class CreditCard {
         if (isBlocked())
             throw new TransactionOnBlockedCardException();
 
-        balance = balance - money;
+        balance = balance.subtract(money);
     }
 
-    private boolean isNotEnoughMoney(double money) {
-        return money > balance;
+    private boolean isNotEnoughMoney(BigDecimal money) {
+        return money.compareTo(balance) > 0;
     }
 
-    private boolean isWithdrawOverTheLimit(double money) {
-        return money > limit;
+    private boolean isWithdrawOverTheLimit(BigDecimal money) {
+        return money.compareTo(limit) > 0;
     }
 
-    public void repay(double money) {
-        if (money < 0) {
+    public void repay(BigDecimal money) {
+        if (money.compareTo(BigDecimal.ZERO) < 0) {
             throw new CantRepayNegativeAmountException();
         }
-        balance = balance + money;
+        balance = balance.add(money);
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 }
