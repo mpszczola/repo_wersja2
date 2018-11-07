@@ -40,6 +40,10 @@ class CreditCard {
             throw new NotEnoughMoneyException();
         }
 
+        if (blocked) {
+            throw new TransactionOnBlockedCardException();
+        }
+
         balance = balance - money;
     }
 }

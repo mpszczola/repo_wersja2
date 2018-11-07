@@ -70,4 +70,12 @@ public class CreditCardTest {
         CreditCard card = new CreditCard();
         card.assignLimit(-100);
     }
+
+    @Test(expected = TransactionOnBlockedCardException.class)
+    public void cantWithdrawFromBlocked() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(100);
+        card.block();
+        card.withdraw(50);
+    }
 }
