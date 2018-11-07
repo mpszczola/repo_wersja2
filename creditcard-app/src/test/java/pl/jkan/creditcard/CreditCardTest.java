@@ -22,6 +22,20 @@ public class CreditCardTest {
         card.withdraw(3000);
         Assert.assertTrue(card.getLimit() == 2000);
     }
+
+    @Test
+    public void cantWithdrawWhenCantRunOutOfMoney() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(2000);
+        card.withdraw(1500);
+
+        try {
+            card.withdraw(1000);
+            Assert.fail("Should throw exception");
+        } catch (NotEnoughMoneyException e){
+            Assert.assertTrue(true);
+        }
+    }
     
     @Test 
     public void canBlockCard() {

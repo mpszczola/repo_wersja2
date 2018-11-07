@@ -4,9 +4,11 @@ class CreditCard {
     
     private boolean blocked = false;
     private double limit;
+    private double balance;
     
     public void assignLimit(double money) {
         this.limit = money;
+        this.balance = money;
     }
     
     public double getLimit() {
@@ -25,5 +27,11 @@ class CreditCard {
         if (money > limit) {
             throw new NotEnoughMoneyException();
         }
+
+        if (money > balance) {
+            throw new NotEnoughMoneyException();
+        }
+
+        balance = balance - money;
     }
 }
