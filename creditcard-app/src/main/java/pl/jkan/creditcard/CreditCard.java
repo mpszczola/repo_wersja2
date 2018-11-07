@@ -32,19 +32,24 @@ class CreditCard {
     }
 
     public void withdraw(double money) {
-        if (money > limit) {
+        if (isWithdrawOverTheLimit(money))
             throw new NotEnoughMoneyException();
-        }
 
-        if (money > balance) {
+        if (isNotEnoughMoney(money))
             throw new NotEnoughMoneyException();
-        }
 
-        if (blocked) {
+        if (isBlocked())
             throw new TransactionOnBlockedCardException();
-        }
 
         balance = balance - money;
+    }
+
+    private boolean isNotEnoughMoney(double money) {
+        return money > balance;
+    }
+
+    private boolean isWithdrawOverTheLimit(double money) {
+        return money > limit;
     }
 
     public void repay(double money) {
