@@ -3,6 +3,8 @@ package pl.jkan.creditcard;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static pl.jkan.creditcard.TestHelper.assertThrows;
+
 public class CreditCardTest {
 
     @Test
@@ -77,5 +79,27 @@ public class CreditCardTest {
         card.assignLimit(100);
         card.block();
         card.withdraw(50);
+    }
+
+    @Test
+    public void repayCredit() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(1000);
+
+        card.withdraw(500);
+        card.withdraw(200);
+        card.repay(400);
+
+        Assert.assertTrue(700 == card.getBalance());
+    }
+
+    public void itIsNotPossibleToRepayNegativeAmount() {
+        CreditCard card = new CreditCard();
+        card.assignLimit(1000);
+
+        assertThrows(
+                CantRepayNegativeAmountException.class,
+                () -> card.repay(-200)
+        );
     }
 }

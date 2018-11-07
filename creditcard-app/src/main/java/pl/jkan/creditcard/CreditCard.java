@@ -46,4 +46,12 @@ class CreditCard {
 
         balance = balance - money;
     }
+
+    public void repay(double money) {
+        balance = balance + money;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
