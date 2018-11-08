@@ -97,15 +97,4 @@ public class CreditCardTest {
 
         Assert.assertTrue(money(700).equals(card.getBalance()));
     }
-
-    @Test
-    public void itIsNotPossibleToRepayNegativeAmount() {
-        CreditCard card = new CreditCard();
-        card.assignLimit(money(1000));
-
-        assertThrows(
-                CantRepayNegativeAmountException.class,
-                () -> card.repay(money(-200))
-        );
-    }
 }

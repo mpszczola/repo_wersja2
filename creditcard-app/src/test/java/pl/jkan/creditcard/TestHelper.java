@@ -1,8 +1,8 @@
 package pl.jkan.creditcard;
 
 import junit.framework.TestCase;
-
-public class TestHelper extends TestCase {
+import static org.junit.Assert.fail;
+public class TestHelper  {
     public static <X extends Throwable> Throwable assertThrows(final Class<X> exceptionClass, final Runnable block) {
         try {
             block.run();

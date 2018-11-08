@@ -7,6 +7,19 @@ class CreditCard {
     private boolean blocked = false;
     private BigDecimal limit;
     private BigDecimal balance = BigDecimal.ZERO;
+    private String id;
+    
+    public CreditCard() {
+        this.id = "random_string";
+    }
+    
+    public CreditCard(String id) {
+        this.id = id;
+    }
+    
+    public String getId() {
+        return id;
+    }
     
     public void assignLimit(BigDecimal money) {
         if (isLimitAlreadyAsigned()) {
