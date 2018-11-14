@@ -79,6 +79,7 @@ class CreditCard {
 komentarz : REPAY
 -----------------------------
 linia pod komentarzem
+kolejna linia?
 */
 
     public void repay(BigDecimal money) {
