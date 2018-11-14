@@ -3,24 +3,24 @@ package pl.jkan.creditcard;
 import java.math.BigDecimal;
 
 class CreditCard {
-    
+
     private boolean blocked = false;
     private BigDecimal limit;
     private BigDecimal balance = BigDecimal.ZERO;
     private String id;
-    
+
     public CreditCard() {
         this.id = "random_string";
     }
-    
+
     public CreditCard(String id) {
         this.id = id;
     }
-    
+
     public String getId() {
         return id;
     }
-    
+
     public void assignLimit(BigDecimal money) {
         if (isLimitAlreadyAsigned()) {
             throw new LimitAlreadyAssignedException();
@@ -45,11 +45,11 @@ class CreditCard {
     public BigDecimal getLimit() {
         return limit;
     }
-    
+
     public void block() {
         this.blocked = true;
     }
-    
+
     public boolean isBlocked() {
         return this.blocked;
     }
