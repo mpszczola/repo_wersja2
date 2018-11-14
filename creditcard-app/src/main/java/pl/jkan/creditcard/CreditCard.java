@@ -75,6 +75,12 @@ class CreditCard {
         return money.compareTo(limit) > 0;
     }
 
+/*
+komentarz : REPAY
+-----------------------------
+linia pod komentarzem
+*/
+
     public void repay(BigDecimal money) {
         if (money.compareTo(BigDecimal.ZERO) < 0) {
             throw new CantRepayNegativeAmountException();
